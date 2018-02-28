@@ -86,13 +86,7 @@ class GraphCycleFinder(object):
             if chain:
                 if name in chain:
                     theloop = chain[chain.index(name):] + [name]
-                    found = False
-                    for tl in theloop:
-                        if "PyUnicode" in tl:
-                            found = True
-                            break
-                    if found == False and theloop not in self.loops:
-                    #if theloop not in self.loops:
+                    if theloop not in self.loops:
                         print ", ".join([str(s) for s in theloop])
                         if self.fp:
                             self.fp.write(", ".join([str(s) for s in theloop]) + "\n")
