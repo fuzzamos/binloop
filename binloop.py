@@ -113,7 +113,7 @@ if len(sys.argv) != 2:
     exit()
 filename = sys.argv[1]
 try:
-    lines = check_output(["objdump", "-d", filename]).splitlines()
+    lines = check_output(["objdump", "-Cd", filename]).splitlines()
 except:
     exit()
 
