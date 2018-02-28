@@ -92,7 +92,7 @@ class GraphCycleFinder(object):
                             self.fp.write(", ".join([str(s) for s in theloop]) + "\n")
                         self.loops += [theloop]
                         if len(self.loops) >= MAX_LOOPS:
-                            exit()
+                            return False
                     return
             if not name in curGraph:
                 continue
@@ -100,7 +100,9 @@ class GraphCycleFinder(object):
             if not type(calling) == list:
                 calling = [calling]
             for k in calling:
-                self.findLoops(curGraph, k, chain + [name])
+                if self.findLoops(curGraph, k, chain + [name]) == False:
+                    return False
+        return True
 
 if len(sys.argv) != 2:
     print "Insufficient arguments"
