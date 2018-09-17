@@ -87,7 +87,9 @@ class GraphCycleFinder(object):
                 if name in chain:
                     theloop = chain[chain.index(name):] + [name]
                     if theloop not in self.loops:
-                        print ", ".join([str(s) for s in theloop])
+                        for L in theloop:
+                            print "    {}".format(L)
+                        print
                         if self.fp:
                             self.fp.write(", ".join([str(s) for s in theloop]) + "\n")
                         self.loops += [theloop]
